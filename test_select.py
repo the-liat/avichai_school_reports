@@ -18,7 +18,6 @@ class SelectionTest(unittest.TestCase):
                   EXECUTE."""
 
         result = build_selection_for_own_school(dict(code=4))
-
         self.assertEqual(expected, result)
 
     def test_build_grade_levels(self):
@@ -28,7 +27,8 @@ class SelectionTest(unittest.TestCase):
         self.assertEqual(expected, result)
 
     def test_build_selection_for_comparison_schools(self):
-        school = {'code': 4, 'sector': 1, 'grade_levels': {'5th': 1, '8th': 1, '11th': 1}}
+        stakeholder_name = 'staff'
+        school = {'code': 4, 'sector': 1, 'grades': {'5th': 1, '8th': 1, '11th': 1}}
         expected = """USE ALL.
         COMPUTE filter_$=(School_Name <> 4 and School_Denomination_3_Groups=1
         and (grade_level=1 or grade_level=2 or grade_level=3)).
@@ -38,6 +38,6 @@ class SelectionTest(unittest.TestCase):
         FORMATS filter_$ (f1.0).
         FILTER BY filter_$.
         EXECUTE.""".strip()
-        result = build_selection_for_comparison_schools(school)
+        result = build_selection_for_comparison_schools(school, stakeholder_name)
         self.assertEqual(expected, result.strip())
 
