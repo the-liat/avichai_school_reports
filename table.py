@@ -21,7 +21,13 @@ class Table(object):
         # Process headers
         headers = self.lines[1].split('|')
         self.headers = [x.strip() for x in headers]
-        self.data = self.process_data(lines, len(self.headers))
+        cell_indices = set()
+        for line in self.lines:
+            for i, c in enumerate(line):
+                if c == '|':
+                    cell_indices.add(i)
+        self.cell_indices = tuple(cell_indices)
+        self.data = self.process_data(lines, len(self.cell_indices) + 1)
 
     @staticmethod
     def process_data(lines, col_count):
@@ -38,7 +44,7 @@ class Table(object):
         # Keep values from previous non-separated row
         merge_values = [''] * col_count
         row_values = [''] * col_count
-        for line in lines[3:]:
+        for i, line in enumerate(lines[3:]):
             values = [v.strip() for v in line.split('|')[1:-1]]
             row_type = Table.get_row_type(values, col_count)
             if row_type == 'ignore':
@@ -81,10 +87,7 @@ class Table(object):
         empty rows and rows with horizintal merge can be ignored.
 
         """
-        # Check for horizintal merge where the number of values is less than the headers
-        if len(values) < col_count:
-            return 'ignore'
-
+        # Check for horizontal merge where the number of values is less than the headers
         compressed_values = [set(v) for v in values]
         # Check if all values are either spaces or underscores
         if all(cv == set() or cv == {' '} for cv in compressed_values):

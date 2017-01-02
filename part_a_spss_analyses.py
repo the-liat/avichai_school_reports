@@ -1,7 +1,10 @@
+from collections import defaultdict
+
 import spssaux
 from spss_analyses import run
 from all_exhibits_syntax import exhibit_stakeholders
 from school_list import schools
+from spss_output_parser import parse_output
 
 stakeholder_filenames = dict(
     students=r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Data Bases and Data Files\Survey Responses\Student Responses\Researching_Hebrew_in_Day_Schools_Student_Survey__V22 LS 20161226 USE THIS.sav',
@@ -59,12 +62,13 @@ def build_selection_for_comparison_schools(school):
         FILTER BY filter_$.
         EXECUTE.
         """
-    gl = build_grade_levels(school['grade_levels'])
+    gl = build_grade_levels(school['grades'])
     result = template.format(school_code=school['code'], sector=school['sector'], grade_levels=gl)
     return result
 
 
 def run_spss_syntax_per_exhibit(school, exhibit_number, stakeholder_name, selection, exhibit_cmd):
+    result = defaultdict(list)
     for name, func in selection.iteritems():
         print '--- exhibit: {}, stakeholder: {}, selection: {}'.format(exhibit_number,
                                                                        stakeholder_name,
@@ -72,14 +76,24 @@ def run_spss_syntax_per_exhibit(school, exhibit_number, stakeholder_name, select
         commands = func(school)
         cmd_list = commands.split('\n')
         run(cmd_list)
+        # print '=' * 20
+        # print exhibit_cmd
+        # print '=' * 20
         out = run([exhibit_cmd])
-        return out
+        lines = out.split('\r\n')
+        tables = parse_output(lines, tables_only=True)
+        for i, table in enumerate(tables):
+            print ('[{}] --- Table {} ---'.format(name, i))
+            print table
+            result[name].append(table)
+    print ('Done.')
+    return result
 
 
 def run_analyses(school):
     selection = dict(
         own_school=build_selection_for_own_school,
-        comparison_schools=build_selection_for_own_school)
+        comparison_schools=build_selection_for_comparison_schools)
     for exhibit_number, stakeholder_commands in exhibit_stakeholders.iteritems():
         for stakeholder_name, exhibit_cmd in stakeholder_commands.items():
             filename = stakeholder_filenames[stakeholder_name]

@@ -16,7 +16,7 @@ def run(cmd_list):
         sys.stdout = orig_stdout
 
 
-def parse_output(lines):
+def parse_output(lines, tables_only=False):
     """Take list of lines and replace lines that represent tables with table objects
 
     """
@@ -32,6 +32,8 @@ def parse_output(lines):
         else:
             result.append(line)
 
+    if tables_only:
+        result = [t for t in result if isinstance(t, Table)]
     return result
 
 def main():
