@@ -1,15 +1,15 @@
 exhibit_stakeholders = {
-    # 2: dict(students="""CROSSTABS
-    #                     /TABLES=Finished BY Grade_Level
-    #                     /FORMAT=AVALUE TABLES
-    #                     /CELLS=COUNT
-    #                     /COUNT ROUND CELL.
-    #                 """,
-    #         parents="""FREQUENCIES VARIABLES= Finished
-    #                     /ORDER=ANALYSIS.
-    #                 """,
-    #         staff="""FREQUENCIES VARIABLES= Finished
-    #                 /ORDER=ANALYSIS."""),
+    2: dict(students="""CROSSTABS
+                        /TABLES=Finished BY Grade_Level
+                        /FORMAT=AVALUE TABLES
+                        /CELLS=COUNT
+                        /COUNT ROUND CELL.
+                    """,
+            parents="""FREQUENCIES VARIABLES= Finished
+                        /ORDER=ANALYSIS.
+                    """,
+            staff="""FREQUENCIES VARIABLES= Finished
+                    /ORDER=ANALYSIS."""),
     # 3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
     #                 /ORDER=ANALYSIS."""),
     # 4: dict(students="""FREQUENCIES VARIABLES= Attend_Overnight_Camp_Yes_No
@@ -468,24 +468,24 @@ exhibit_stakeholders = {
     #                 Rate_current_hebrew_level_understanding_hebrewfortext [S][MEAN]
     #                 /TITLES
     #                 TITLE='*Exhibit 21: Stakeholders Perceptions of Hebrew for text study.'."""),
-    22: dict(students="""CTABLES
-                        /VLABELS VARIABLES=A_D_read_unfamiliar_siddurtext
-                        A_D_understand_familiar_siddurtext
-                        A_D_lead_prayer
-                        A_D_chant_torah
-                        A_D_learn_jewish_text_independently
-                        DISPLAY=LABEL
-                        /TABLE A_D_read_unfamiliar_siddurtext [C] +
-                        A_D_understand_familiar_siddurtext [C] +
-                        A_D_lead_prayer [C] +
-                        A_D_chant_torah [C] +
-                        A_D_learn_jewish_text_independently[C]  BY Grade_Level [C][COLPCT.COUNT PCT40.1]
-                        /CATEGORIES VARIABLES=A_D_read_unfamiliar_siddurtext
-                        A_D_understand_familiar_siddurtext
-                        A_D_lead_prayer
-                        A_D_chant_torah
-                        A_D_learn_jewish_text_independently Grade_Level ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE
-                        /CRITERIA CILEVEL=95
-                        /TITLES
-                        TITLE=' Exhibit 22: Students Assessment of their Hebrew for Text Study and Prayer Abilities.'.""")
+    # 22: dict(students="""CTABLES
+    #                     /VLABELS VARIABLES=A_D_read_unfamiliar_siddurtext
+    #                     A_D_understand_familiar_siddurtext
+    #                     A_D_lead_prayer
+    #                     A_D_chant_torah
+    #                     A_D_learn_jewish_text_independently
+    #                     DISPLAY=LABEL
+    #                     /TABLE A_D_read_unfamiliar_siddurtext [C] +
+    #                     A_D_understand_familiar_siddurtext [C] +
+    #                     A_D_lead_prayer [C] +
+    #                     A_D_chant_torah [C] +
+    #                     A_D_learn_jewish_text_independently[C]  BY Grade_Level [C][COLPCT.COUNT PCT40.1]
+    #                     /CATEGORIES VARIABLES=A_D_read_unfamiliar_siddurtext
+    #                     A_D_understand_familiar_siddurtext
+    #                     A_D_lead_prayer
+    #                     A_D_chant_torah
+    #                     A_D_learn_jewish_text_independently Grade_Level ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE
+    #                     /CRITERIA CILEVEL=95
+    #                     /TITLES
+    #                     TITLE=' Exhibit 22: Students Assessment of their Hebrew for Text Study and Prayer Abilities.'.""")
 }

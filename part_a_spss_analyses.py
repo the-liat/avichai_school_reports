@@ -64,6 +64,18 @@ def build_selection_for_comparison_schools(school):
     return result
 
 
+def run_spss_syntax_per_exhibit(school, exhibit_number, stakeholder_name, selection, exhibit_cmd):
+    for name, func in selection.iteritems():
+        print '--- exhibit: {}, stakeholder: {}, selection: {}'.format(exhibit_number,
+                                                                       stakeholder_name,
+                                                                       name)
+        commands = func(school)
+        cmd_list = commands.split('\n')
+        run(cmd_list)
+        out = run([exhibit_cmd])
+        return out
+
+
 def run_analyses(school):
     selection = dict(
         own_school=build_selection_for_own_school,
@@ -72,15 +84,7 @@ def run_analyses(school):
         for stakeholder_name, exhibit_cmd in stakeholder_commands.items():
             filename = stakeholder_filenames[stakeholder_name]
             spssaux.OpenDataFile(filename)
-            for name, func in selection.iteritems():
-                print '--- exhibit: {}, stakeholder: {}, selection: {}'.format(exhibit_number,
-                                                                               stakeholder_name,
-                                                                               name)
-                commands = func(school)
-                cmd_list = commands.split('\n')
-                run(cmd_list)
-                out = run([exhibit_cmd])
-                print out
+            run_spss_syntax_per_exhibit(school, exhibit_number, stakeholder_name, selection, exhibit_cmd)
 
 
 def main():
