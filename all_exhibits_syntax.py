@@ -1,17 +1,17 @@
 exhibit_stakeholders = {
-    2: dict(students="""CROSSTABS
-                        /TABLES=Finished BY Grade_Level
-                        /FORMAT=AVALUE TABLES
-                        /CELLS=COUNT
-                        /COUNT ROUND CELL.
-                    """,
-            parents="""FREQUENCIES VARIABLES= Finished
-                        /ORDER=ANALYSIS.
-                    """,
-            staff="""FREQUENCIES VARIABLES= Finished
-                    /ORDER=ANALYSIS."""),
-    # 3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
+    # 2: dict(students="""CROSSTABS
+    #                     /TABLES=Finished BY Grade_Level
+    #                     /FORMAT=AVALUE TABLES
+    #                     /CELLS=COUNT
+    #                     /COUNT ROUND CELL.
+    #                 """,
+    #         parents="""FREQUENCIES VARIABLES= Finished
+    #                     /ORDER=ANALYSIS.
+    #                 """,
+    #         staff="""FREQUENCIES VARIABLES= Finished
     #                 /ORDER=ANALYSIS."""),
+    3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
+                    /ORDER=ANALYSIS."""),
     # 4: dict(students="""FREQUENCIES VARIABLES= Attend_Overnight_Camp_Yes_No
     #                 Attend_Youth_Group_Yes_No
     #                 Visited_Israel_TwicePlus_Yes_No
