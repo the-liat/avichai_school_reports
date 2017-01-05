@@ -4,6 +4,7 @@ import os
 
 xl_app = None
 
+
 def open_excel():
     global xl_app
     xl_app = win32.gencache.EnsureDispatch('Excel.Application')
@@ -22,9 +23,11 @@ def create_school_workbook_from_template(school_name):
     wb = xl_app.Workbooks.Open(file_name)
     return wb, file_name
 
+
 def populate_exhibit(exhibit_number, table_dict, workbook):
     func = globals()['populate_exhibit{}'.format(exhibit_number)]
     func(table_dict, workbook)
+
 
 def populate_exhibit2(table_dict, workbook):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
@@ -50,23 +53,87 @@ def populate_exhibit2(table_dict, workbook):
 
 def populate_exhibit3(table_dict, workbook):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
-    schools_cells = (('own_school', 'J'), ('comparison_schools', 'k'),)
+    schools_cells = (('own_school', 'J'), ('comparison_schools', 'K'))
     for s_c in schools_cells:
         t_parents_own = table_dict[(s_c[0], 'parents')][1]
         i = 13
         j = 0
         while i < 17:
-            cell = '"{}{}"'.format(s_c[1],i)
+            cell = "{}{}".format(s_c[1], i)
             po = t_parents_own.get_row(j)[4]
             ws.Range(cell).Value = po
             i += 1
             j += 1
 
-    # t_parents_com = table_dict[('comparison_schools', 'parents')][1]
-    # ws.Range("D3").Value = t_parents_com.get_row(1)[2]
+
+def populate_exhibit4(table_dict, workbook):
+    ws = workbook.Worksheets('Exhibits 2,3,4,5')
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    ws.Range("J26").Value = t_parents_own.get_row(2)[4] + t_parents_own.get_row(3)[4]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
+    ws.Range("K26").Value = t_parents_com.get_row(2)[4] + t_parents_com.get_row(3)[4]
+    ws.Range("J27").Value = table_dict[('own_school', 'students')][1].get_row(1)[4]
+    ws.Range("J28").Value = table_dict[('own_school', 'students')][2].get_row(1)[4]
+    ws.Range("J29").Value = table_dict[('own_school', 'students')][3].get_row(1)[4]
+    ws.Range("J30").Value = table_dict[('own_school', 'students')][4].get_row(1)[4]
+    ws.Range("K27").Value = table_dict[('comparison_schools', 'students')][1].get_row(1)[4]
+    ws.Range("K28").Value = table_dict[('comparison_schools', 'students')][2].get_row(1)[4]
+    ws.Range("K29").Value = table_dict[('comparison_schools', 'students')][3].get_row(1)[4]
+    ws.Range("K30").Value = table_dict[('comparison_schools', 'students')][4].get_row(1)[4]
 
 
+def find_cells(table):  # this should work for every table in the table dictionary
+    i = 0
+    x = 0
+    while table.get_row(i)[1] != 'Total':
+        if table.get_row(i)[1] == 'Important' or table.get_row(i)[1] == 'Very important':
+            x += table.get_row(i)[4]
+        i += 1
+    return x  # sum of 'important' and 'very important' %
 
+
+def populate_exhibit5(table_dict, workbook):
+    ws = workbook.Worksheets('Exhibits 2,3,4,5')
+    for school, stakeholder in table_dict:
+        table = table_dict[(school, stakeholder)][1]
+        value = find_cells(table)
+        if school == 'own_school':
+            col = 'J'
+        else:
+            col = 'K'
+        if stakeholder == 'staff':
+            row = '43'
+        elif stakeholder == 'students':
+            row = '44'
+        else:
+            row = '45'
+        cell = "{}{}".format(col, row)
+        ws.Range(cell).Value = value
+
+
+# def populate_exhibit6(table_dict, workbook):
+#     ws = workbook.Worksheets('Exhibits 6,7,8,9')
+#     for keys in table_dict.keys():
+#         school, stakeholder = keys[0], keys[1]
+#         table = table_dict[(school, stakeholder)][1]
+
+
+def populate_exhibit7(table_dict, workbook):
+    ws = workbook.Worksheets('Exhibits 6,7,8,9')
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    t_staff_own = table_dict[('own_school', 'staff')][1]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][1]
+    tables = (t_staff_own, t_parents_own, t_staff_com, t_parents_com)
+    # for table in tables:
+
+    row_labels_rows = [
+        dict(label='Not at all satisfied', row=26),
+        dict(label='A little bit satisfied', row=27),
+        dict(label='Somewhat satisfied', row=28),
+        dict(label='Satifsfied', row=29),
+        dict(label='Very satisfied', row=30)
+    ]
 
 
 """

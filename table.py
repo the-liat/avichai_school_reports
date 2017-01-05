@@ -92,7 +92,7 @@ class Table(object):
         # Check if all values are either spaces or underscores
         if all(cv == set() or cv == {' '} for cv in compressed_values):
             return 'ignore'
-        elif all(cv == set() or cv == {'_'} for cv in compressed_values):
+        elif any(cv == {'_'} for cv in compressed_values):
             return 'separator'
 
         return 'data'

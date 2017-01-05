@@ -10,8 +10,8 @@ exhibit_stakeholders = {
     #                 """,
     #         staff="""FREQUENCIES VARIABLES= Finished
     #                 /ORDER=ANALYSIS."""),
-    3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
-                    /ORDER=ANALYSIS."""),
+    # 3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
+    #                 /ORDER=ANALYSIS."""),
     # 4: dict(students="""FREQUENCIES VARIABLES= Attend_Overnight_Camp_Yes_No
     #                 Attend_Youth_Group_Yes_No
     #                 Visited_Israel_TwicePlus_Yes_No
@@ -157,10 +157,10 @@ exhibit_stakeholders = {
     #                 EMPTY=INCLUDE
     #                 /TITLES
     #                 TITLE='*Exhibit 6: Why is Heb for comm important.'."""),
-    # 7: dict(parents="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
-    #                 /ORDER=ANALYSIS.""",
-    #         staff="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
-    #                 /ORDER=ANALYSIS."""),
+    7: dict(parents="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
+                    /ORDER=ANALYSIS.""",
+            staff="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
+                    /ORDER=ANALYSIS."""),
     # 8: dict(parents="""MULT RESPONSE GROUPS=$Challanges.Heb.comm (
     #                 challanges_conversational_teacherexpertise
     #                 challanges_conversational_teachers_lowknowledge
