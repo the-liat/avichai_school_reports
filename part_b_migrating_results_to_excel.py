@@ -111,29 +111,55 @@ def populate_exhibit5(table_dict, workbook):
         ws.Range(cell).Value = value
 
 
-# def populate_exhibit6(table_dict, workbook):
-#     ws = workbook.Worksheets('Exhibits 6,7,8,9')
+def populate_exhibit6(table_dict, workbook):
+    ws = workbook.Worksheets('Exhibits 6,7,8,9')
+
+
 #     for keys in table_dict.keys():
 #         school, stakeholder = keys[0], keys[1]
 #         table = table_dict[(school, stakeholder)][1]
 
+def get_values_from_table(i, table, labels_rows):
+    for d in labels_rows:
+        if table.get_row(i)[1] == d['label']:
+            row = d['row']
+            x = table.get_row(i)[4]
+            return x, row
+    return None
+
 
 def populate_exhibit7(table_dict, workbook):
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
-    t_parents_own = table_dict[('own_school', 'parents')][1]
-    t_staff_own = table_dict[('own_school', 'staff')][1]
-    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
-    t_staff_com = table_dict[('comparison_schools', 'staff')][1]
-    tables = (t_staff_own, t_parents_own, t_staff_com, t_parents_com)
-    # for table in tables:
-
-    row_labels_rows = [
+    # where each value in table goes in excel rows
+    labels_rows = [
         dict(label='Not at all satisfied', row=26),
         dict(label='A little bit satisfied', row=27),
         dict(label='Somewhat satisfied', row=28),
         dict(label='Satifsfied', row=29),
         dict(label='Very satisfied', row=30)
     ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    t_staff_own = table_dict[('own_school', 'staff')][1]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][1]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_staff_own, column='K'),
+        dict(table=t_parents_own, column='L'),
+        dict(table=t_staff_com, column='M'),
+        dict(table=t_parents_com, column='N')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    for d in tables:
+        i = 0
+        while d['table'].get_row(i)[1] != 'Total':
+            value, row = get_values_from_table(i, d['table'], labels_rows)
+            col = d['column']
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+            i += 1
 
 
 """

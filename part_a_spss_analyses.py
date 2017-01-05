@@ -15,10 +15,6 @@ stakeholder_filenames = dict(
     staff=r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Data Bases and Data Files\Survey Responses\Staff Responses\Researching_Hebrew_in_Day_SchoolsStaff_Survey_V22_LS_20161226 USE THIS.sav')
 
 
-# for school in schools:
-#     school_name = school['name']
-#     for school_name, school_code, number_of_grades, sector_code, grades_dict in schools.iteritems():
-
 def build_selection_for_own_school(school, stakeholder_name):
     """ Build the spss command for selection the specific school
     populaate placehoolder in template with school code

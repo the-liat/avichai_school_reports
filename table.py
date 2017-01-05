@@ -58,6 +58,7 @@ class Table(object):
 
                 # Parse numbers if possible
                 for i, v in enumerate(data_row):
+                    v = v[:-1] if v and v[-1] == '%' else v
                     try:
                         data_row[i] = int(v)
                     except ValueError:
