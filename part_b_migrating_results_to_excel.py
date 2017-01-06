@@ -135,7 +135,7 @@ def populate_exhibit7(table_dict, workbook):
         dict(label='Not at all satisfied', row=26),
         dict(label='A little bit satisfied', row=27),
         dict(label='Somewhat satisfied', row=28),
-        dict(label='Satifsfied', row=29),
+        dict(label='Satisfied', row=29),
         dict(label='Very satisfied', row=30)
     ]
     # defining tables to get information from
