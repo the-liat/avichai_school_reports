@@ -461,6 +461,34 @@ def populate_exhibit17(table_dict, workbook): #similar to exhibit 6
             j += 1
 
 
+def populate_exhibit18(table_dict, workbook):  # tsimilar to exhibit 7
+    ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={1: 'Not at all satisfied'}, row=41),
+        dict(labels={1: 'A little bit satisfied'}, row=42),
+        dict(labels={1: 'Somewhat satisfied'}, row=43),
+        dict(labels={1: 'Satisfied'}, row=44),
+        dict(labels={1: 'Very satisfied'}, row=45)
+    ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    t_staff_own = table_dict[('own_school', 'staff')][1]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][1]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_staff_own, column='M'),
+        dict(table=t_parents_own, column='N'),
+        dict(table=t_staff_com, column='O'),
+        dict(table=t_parents_com, column='P')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_row_labels(tables, labels_rows, ws, y)
+
+
 """
 
 get_cell_value(row_index, col_index)
