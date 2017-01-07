@@ -19,7 +19,8 @@ def create_school_workbook_from_template(school_name):
     f = r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Deliverables\School Reports\ACF HebDS All Exhibits for School Report TEMPLATE LS20170101.xlsx'
     dir_name = r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Deliverables\School Reports\Final Excel Sheets for Reports Production'
     file_name = os.path.join(dir_name, 'ACF HebDS. {}.xlsx'.format(school_name))
-    shutil.copyfile(f, file_name)
+    if not os.path.exists(file_name):
+        shutil.copyfile(f, file_name)
     wb = xl_app.Workbooks.Open(file_name)
     return wb, file_name
 
@@ -111,32 +112,110 @@ def populate_exhibit5(table_dict, workbook):
         ws.Range(cell).Value = value
 
 
-def populate_exhibit6(table_dict, workbook):
-    ws = workbook.Worksheets('Exhibits 6,7,8,9')
-
-
-#     for keys in table_dict.keys():
-#         school, stakeholder = keys[0], keys[1]
-#         table = table_dict[(school, stakeholder)][1]
-
-def get_values_from_table(i, table, labels_rows):
+def get_values_from_table(i, table, labels_rows, y):
+    # Y is the index of the value needed to be pulled from the spss table
+    row = table.get_row(i)
     for d in labels_rows:
-        if table.get_row(i)[1] == d['label']:
-            row = d['row']
-            x = table.get_row(i)[4]
-            return x, row
-    return None
+        match = True
+        for col, label in d['labels'].iteritems():
+            if row[col] != label:
+                match = False
+                break
+        if not match:
+            continue
+        return row[y], d['row']
+    return None, None
 
 
-def populate_exhibit7(table_dict, workbook):
+def populate_excel_by_row_labels(tables, labels_rows, ws, y):  # for exhibits 7, 9, 10, 13, 17, 18, 20
+    for d in tables:
+        i = 0  # i is the index of the table line
+        while i < len(d['table'].data):
+            value, row = get_values_from_table(i, d['table'], labels_rows, y)
+            if value is None:
+                i += 1
+                continue
+            col = d['column']
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+            i += 1
+
+
+def get_values_exhibits_6_17(i, j, table, labels_rows, y):
+    value = table.get_row(i)[y]
+    row = labels_rows[j]['row']
+    return value, row
+
+
+def populate_exhibit6(table_dict, workbook):
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
     # where each value in table goes in excel rows
     labels_rows = [
-        dict(label='Not at all satisfied', row=26),
-        dict(label='A little bit satisfied', row=27),
-        dict(label='Somewhat satisfied', row=28),
-        dict(label='Satisfied', row=29),
-        dict(label='Very satisfied', row=30)
+        dict(labels={0: 'it connects Jews around the world',
+                     1: 'Agree/Strongly Agree'}, row=5),
+        dict(labels={0: 'it makes one feel a part of the group when people mix Hebrew into English',
+                     1: 'Agree/Strongly Agree'}, row=6),
+        dict(labels={0: 'it is a part of being Jewish',
+                     1: 'Agree/Strongly Agree'}, row=7),
+        dict(labels={0: "it maintains the Jewish people's language",
+                     1: 'Agree/Strongly Agree'}, row=8),
+        dict(labels={0: 'it helps in forming a connection with Israel',
+                     1: 'Agree/Strongly Agree'}, row=9),
+        dict(labels={0: 'it prepares one to make Aliyah in case one wants to',
+                     1: 'Agree/Strongly Agree'}, row=12),
+        dict(labels={0: 'it helps when visiting Israel',
+                     1: 'Agree/Strongly Agree'}, row=13),
+        dict(labels={0: 'it allows one to read modern Israeli books, newspapers, websites or music lyrics',
+                     1: 'Agree/Strongly Agree'}, row=14),
+        dict(labels={0: 'it helps in communicating with other Jews around the world',
+                     1: 'Agree/Strongly Agree'}, row=15),
+        dict(labels={0: 'it helps communicate with people who only speak Hebrew',
+                     1: 'Agree/Strongly Agree'}, row=16),
+        dict(labels={0: 'Learning a second language contributes to brain development',
+                     1: 'Agree/Strongly Agree'}, row=18)
+    ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][0]
+    t_students_own = table_dict[('own_school', 'students')][0]
+    t_staff_own = table_dict[('own_school', 'staff')][0]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][0]
+    t_students_com = table_dict[('comparison_schools', 'students')][0]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][0]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_staff_own, column='D'),
+        dict(table=t_students_own, column='C'),
+        dict(table=t_parents_own, column='B'),
+        dict(table=t_staff_com, column='G'),
+        dict(table=t_students_com, column='F'),
+        dict(table=t_parents_com, column='E')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 2  # Y is the index of the value needed to be pulled from the spss table
+    for d in tables:
+        i = 1  # i is the index of the table line
+        j = 0
+        while i < len(d['table'].data):
+            value, row = get_values_exhibits_6_17(i, j, d['table'], labels_rows, y)
+            col = d['column']
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+            i += 2
+            j += 1
+
+
+
+
+def populate_exhibit7(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+    ws = workbook.Worksheets('Exhibits 6,7,8,9')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={1: 'Not at all satisfied'}, row=26),
+        dict(labels={1: 'A little bit satisfied'}, row=27),
+        dict(labels={1: 'Somewhat satisfied'}, row=28),
+        dict(labels={1: 'Satisfied'}, row=29),
+        dict(labels={1: 'Very satisfied'}, row=30)
     ]
     # defining tables to get information from
     t_parents_own = table_dict[('own_school', 'parents')][1]
@@ -152,14 +231,8 @@ def populate_exhibit7(table_dict, workbook):
     ]
     # in each table, it will go to the line and find the appropriate
     # value for this line and put it in the right position, iterate on all lines
-    for d in tables:
-        i = 0
-        while d['table'].get_row(i)[1] != 'Total':
-            value, row = get_values_from_table(i, d['table'], labels_rows)
-            col = d['column']
-            cell = "{}{}".format(col, row)
-            ws.Range(cell).Value = value
-            i += 1
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_row_labels(tables, labels_rows, ws, y)
 
 
 """

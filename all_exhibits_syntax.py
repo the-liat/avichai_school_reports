@@ -25,139 +25,139 @@ exhibit_stakeholders = {
     #                 /ORDER=ANALYSIS.""",
     #         staff="""FREQUENCIES VARIABLES= Important_forstaff_hebrewforcommunication
     #                  /ORDER=ANALYSIS."""),
-    # 6: dict(students="""CTABLES
-    #                     /VLABELS VARIABLES=
-    #                     A_D_important_hebrew_connects_jewsYes_No
-    #                     A_D_important_hebrew_part_group_mix_hebrewYes_No
-    #                     A_D_important_hebrew_part_being_jewishYes_No
-    #                     A_D_important_hebrew_maintains_jewish_languageYes_No
-    #                     A_D_important_hebrew_connect_israelYes_No
-    #                     A_D_important_hebrew_prepares_aliyaYes_No
-    #                     A_D_important_hebrew_helps_visit_israelYes_No
-    #                     A_D_important_hebrew_read_modern_israel_booksYes_No
-    #                     A_D_important_hebrew_communicate_jews_worldYes_No
-    #                     A_D_important_hebrew_communicate_hebrew_speakersYes_No
-    #                     A_D_important_hebrew_learn_2ndlanguageYes_No
-    #                     DISPLAY=LABEL
-    #                     /TABLE
-    #                     A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /TITLES
-    #                     TITLE='*Exhibit 6: Why is Heb for comm important.'.""",
-    #         parents="""CTABLES
-    #                     /VLABELS VARIABLES=
-    #                     A_D_important_hebrew_connects_jewsYes_No
-    #                     A_D_important_hebrew_part_group_mix_hebrewYes_No
-    #                     A_D_important_hebrew_part_being_jewishYes_No
-    #                     A_D_important_hebrew_maintains_jewish_languageYes_No
-    #                     A_D_important_hebrew_connect_israelYes_No
-    #                     A_D_important_hebrew_prepares_aliyaYes_No
-    #                     A_D_important_hebrew_helps_visit_israelYes_No
-    #                     A_D_important_hebrew_read_modern_israel_booksYes_No
-    #                     A_D_important_hebrew_communicate_jews_worldYes_No
-    #                     A_D_important_hebrew_communicate_hebrew_speakersYes_No
-    #                     A_D_important_hebrew_learn_2ndlanguageYes_No
-    #                     DISPLAY=LABEL
-    #                     /TABLE
-    #                     A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                     A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                     /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
-    #                     EMPTY=INCLUDE
-    #                     /TITLES
-    #                     TITLE='*Exhibit 6: Why is Heb for comm important.'.""",
-    #         staff="""CTABLES
-    #                 /VLABELS VARIABLES=
-    #                 A_D_important_hebrew_connects_jewsYes_No
-    #                 A_D_important_hebrew_part_group_mix_hebrewYes_No
-    #                 A_D_important_hebrew_part_being_jewishYes_No
-    #                 A_D_important_hebrew_maintains_jewish_languageYes_No
-    #                 A_D_important_hebrew_connect_israelYes_No
-    #                 A_D_important_hebrew_prepares_aliyaYes_No
-    #                 A_D_important_hebrew_helps_visit_israelYes_No
-    #                 A_D_important_hebrew_read_modern_israel_booksYes_No
-    #                 A_D_important_hebrew_communicate_jews_worldYes_No
-    #                 A_D_important_hebrew_communicate_hebrew_speakersYes_No
-    #                 A_D_important_hebrew_learn_2ndlanguageYes_No
-    #                 DISPLAY=LABEL
-    #                 /TABLE
-    #                 A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
-    #                 A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
-    #                 EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
-    #                 EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
-    #                 EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
-    #                 EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
-    #                 /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
-    #                 EMPTY=INCLUDE
-    #                 /TITLES
-    #                 TITLE='*Exhibit 6: Why is Heb for comm important.'."""),
-    7: dict(parents="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
+    6: dict(students="""CTABLES
+                        /VLABELS VARIABLES=
+                        A_D_important_hebrew_connects_jewsYes_No
+                        A_D_important_hebrew_part_group_mix_hebrewYes_No
+                        A_D_important_hebrew_part_being_jewishYes_No
+                        A_D_important_hebrew_maintains_jewish_languageYes_No
+                        A_D_important_hebrew_connect_israelYes_No
+                        A_D_important_hebrew_prepares_aliyaYes_No
+                        A_D_important_hebrew_helps_visit_israelYes_No
+                        A_D_important_hebrew_read_modern_israel_booksYes_No
+                        A_D_important_hebrew_communicate_jews_worldYes_No
+                        A_D_important_hebrew_communicate_hebrew_speakersYes_No
+                        A_D_important_hebrew_learn_2ndlanguageYes_No
+                        DISPLAY=LABEL
+                        /TABLE
+                        A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /TITLES
+                        TITLE='*Exhibit 6: Why is Heb for comm important.'.""",
+            parents="""CTABLES
+                        /VLABELS VARIABLES=
+                        A_D_important_hebrew_connects_jewsYes_No
+                        A_D_important_hebrew_part_group_mix_hebrewYes_No
+                        A_D_important_hebrew_part_being_jewishYes_No
+                        A_D_important_hebrew_maintains_jewish_languageYes_No
+                        A_D_important_hebrew_connect_israelYes_No
+                        A_D_important_hebrew_prepares_aliyaYes_No
+                        A_D_important_hebrew_helps_visit_israelYes_No
+                        A_D_important_hebrew_read_modern_israel_booksYes_No
+                        A_D_important_hebrew_communicate_jews_worldYes_No
+                        A_D_important_hebrew_communicate_hebrew_speakersYes_No
+                        A_D_important_hebrew_learn_2ndlanguageYes_No
+                        DISPLAY=LABEL
+                        /TABLE
+                        A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
+                        A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                        /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
+                        EMPTY=INCLUDE
+                        /TITLES
+                        TITLE='*Exhibit 6: Why is Heb for comm important.'.""",
+            staff="""CTABLES
+                    /VLABELS VARIABLES=
+                    A_D_important_hebrew_connects_jewsYes_No
+                    A_D_important_hebrew_part_group_mix_hebrewYes_No
+                    A_D_important_hebrew_part_being_jewishYes_No
+                    A_D_important_hebrew_maintains_jewish_languageYes_No
+                    A_D_important_hebrew_connect_israelYes_No
+                    A_D_important_hebrew_prepares_aliyaYes_No
+                    A_D_important_hebrew_helps_visit_israelYes_No
+                    A_D_important_hebrew_read_modern_israel_booksYes_No
+                    A_D_important_hebrew_communicate_jews_worldYes_No
+                    A_D_important_hebrew_communicate_hebrew_speakersYes_No
+                    A_D_important_hebrew_learn_2ndlanguageYes_No
+                    DISPLAY=LABEL
+                    /TABLE
+                    A_D_important_hebrew_connects_jewsYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_part_group_mix_hebrewYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_part_being_jewishYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_maintains_jewish_languageYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_connect_israelYes_No  [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_prepares_aliyaYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_helps_visit_israelYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_read_modern_israel_booksYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_communicate_jews_worldYes_No   [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_communicate_hebrew_speakersYes_No [C][COLPCT.COUNT PCT40.1] +
+                    A_D_important_hebrew_learn_2ndlanguageYes_No [C][COLPCT.COUNT PCT40.1]
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_connects_jewsYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_part_group_mix_hebrewYes_No [0, 1, OTHERNM]
+                    EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES=A_D_important_hebrew_part_being_jewishYes_No [0, 1, OTHERNM]
+                    EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_maintains_jewish_languageYes_No  [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES=A_D_important_hebrew_connect_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_prepares_aliyaYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_helps_visit_israelYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_read_modern_israel_booksYes_No [0, 1, OTHERNM]
+                    EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES=A_D_important_hebrew_communicate_jews_worldYes_No  [0, 1, OTHERNM]
+                    EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_communicate_hebrew_speakersYes_No [0, 1, OTHERNM] EMPTY=INCLUDE
+                    /CATEGORIES VARIABLES= A_D_important_hebrew_learn_2ndlanguageYes_No [0, 1, OTHERNM]
+                    EMPTY=INCLUDE
+                    /TITLES
+                    TITLE='*Exhibit 6: Why is Heb for comm important.'."""),
+     7: dict(parents="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
                     /ORDER=ANALYSIS.""",
             staff="""FREQUENCIES VARIABLES=Satisfied_instruction_hebrewforcommunication
                     /ORDER=ANALYSIS."""),
