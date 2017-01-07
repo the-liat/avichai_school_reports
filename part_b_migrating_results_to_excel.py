@@ -362,6 +362,30 @@ def populate_exhibit10(table_dict, workbook):  # table_dict is the dictionary fo
         row += 1
 
 
+def populate_exhibit13(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+    ws = workbook.Worksheets('Exhibits 12,13')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={1: 'Hate it'}, row=16),
+        dict(labels={1: 'Dislike it'}, row=17),
+        dict(labels={1: 'Neutral'}, row=18),
+        dict(labels={1: 'Like it'}, row=19),
+        dict(labels={1: 'Love it'}, row=20)
+    ]
+    # defining tables to get information from
+    t_students_own = table_dict[('own_school', 'students')][1]
+    t_students_com = table_dict[('comparison_schools', 'students')][1]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_students_own, column='M'),
+        dict(table=t_students_com, column='N')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_row_labels(tables, labels_rows, ws, y)
+
+
 """
 
 get_cell_value(row_index, col_index)
