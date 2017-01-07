@@ -270,7 +270,7 @@ def populate_exhibit8(table_dict, workbook):  # table_dict is the dictionary for
              row=50),
         dict(labels={1: 'Challange-There are too many children in the classroom'},
              row=51),
-        dict(labels={1: 'Hebrew for everyday communication is the first class that gets canceled for an activity'},
+        dict(labels={1: 'Challange-Hebrew for everyday communication is the first class that gets canceled for an activity'},
              row=52),
     ]
     # defining tables to get information from
@@ -487,6 +487,49 @@ def populate_exhibit18(table_dict, workbook):  # tsimilar to exhibit 7
     # value for this line and put it in the right position, iterate on all lines
     y = 4  # Y is the index of the value needed to be pulled from the spss table
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
+
+
+def populate_exhibit19(table_dict, workbook):  # similar to exhibit 8
+    ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={1: 'Challange-The teachers do not have enough teaching experience'},
+             row=59),
+        dict(labels={1: 'Challange-The teachers are not knowledgeable in Hebrew for prayer or text study'},
+             row=60),
+        dict(labels={1: 'Challange-Hebrew for prayer and text study instruction is mainly conducted in English'},
+             row=61),
+        dict(labels={1: 'Challange-The teachers do not prioritize the mastery of classical text in Hebrew'},
+             row=62),
+        dict(labels={1: 'Challange-There are not enough Hebrew for prayer or text study teachers'},
+             row=63),
+        dict(labels={1: 'Challange-There is not enough time devoted to study Hebrew for prayer or text study in Hebrew'},
+             row=64),
+        dict(labels={1: 'Challange-Classical Hebrew texts are taught in translation'},
+             row=65),
+        dict(labels={1: 'Challange-There are too many children in the classroom'},
+             row=66),
+        dict(labels={1: "Challange-The instruction is mainly conducted in Hebrew (Ivrit b'Ivrit)"},
+             row=67),
+        dict(labels={1: 'Challange-The diversity of Hebrew levels in the class'},
+             row=68),
+    ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    t_staff_own = table_dict[('own_school', 'staff')][1]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][1]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][1]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_staff_own, column='C'),
+        dict(table=t_parents_own, column='B'),
+        dict(table=t_staff_com, column='E'),
+        dict(table=t_parents_com, column='D')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_row_labels_ex8(tables, labels_rows, ws, y)
 
 
 """
