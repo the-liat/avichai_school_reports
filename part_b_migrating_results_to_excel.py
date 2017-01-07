@@ -328,10 +328,44 @@ def populate_exhibit9(table_dict, workbook):  # table_dict is the dictionary for
             i += 4
             j += 1
 
-    """
 
-    get_cell_value(row_index, col_index)
-    get_row(row_index)
-    get_col_by_index(col_index)
-    get_col_by_name(col_name)
-    """
+def populate_exhibit10(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+    ws = workbook.Worksheets('Exhibit 10 +Comments')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={1: 'Much worse'}, row=4),
+        dict(labels={1: 'Worse'}, row=5),
+        dict(labels={1: 'About the same'}, row=6),
+        dict(labels={1: 'Better'}, row=7),
+        dict(labels={1: 'Much better'}, row=8)
+    ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][1]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][2]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_parents_own, column='M'),
+        dict(table=t_parents_com, column='N')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_row_labels(tables, labels_rows, ws, y)
+    t = table_dict[('own_school', 'parents')][2]
+    i = 0
+    row = 17  # startinf row to pase comments
+    while i < len(t.data):
+        value = t.get_row(i)[1]
+        cell = "A{}".format(row)
+        ws.Range(cell).Value = value
+        i += 1
+        row += 1
+
+
+"""
+
+get_cell_value(row_index, col_index)
+get_row(row_index)
+get_col_by_index(col_index)
+get_col_by_name(col_name)
+"""
