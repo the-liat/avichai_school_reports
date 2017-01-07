@@ -404,6 +404,63 @@ def populate_exhibit16(table_dict, workbook): #same as exhibit 5
         cell = "{}{}".format(col, row)
         ws.Range(cell).Value = value
 
+
+def populate_exhibit17(table_dict, workbook): #similar to exhibit 6
+    ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
+    # where each value in table goes in excel rows
+    labels_rows = [
+        dict(labels={0: 'it helps recognize Hebrew prayer as a part of the Jewish heritage/tradition',
+                     1: 'Agree/Strongly Agree'}, row=23),
+        dict(labels={0: 'it prepares one to lead prayers',
+                     1: 'Agree/Strongly Agree'}, row=24),
+        dict(labels={0: 'it makes one feel comfortable when at a service in Hebrew',
+                     1: 'Agree/Strongly Agree'}, row=25),
+        dict(labels={0: 'it strengthens the appreciation of Jewish culture and tradition',
+                     1: 'Agree/Strongly Agree'}, row=26),
+        dict(labels={0: 'it makes one feel a part of the synagogue',
+                     1: 'Agree/Strongly Agree'}, row=27),
+        dict(labels={0: 'it deepens the experience of studying Jewish text',
+                     1: 'Agree/Strongly Agree'}, row=30),
+        dict(labels={0: 'it helps in understanding Jewish texts in their original Hebrew',
+                     1: 'Agree/Strongly Agree'}, row=31),
+        dict(labels={0: 'it helps in reading out loud Jewish texts in their original Hebrew',
+                     1: 'Agree/Strongly Agree'}, row=32),
+        dict(labels={0: 'it helps understand the meaning of prayers',
+                     1: 'Agree/Strongly Agree'}, row=33),
+        dict(labels={0: 'it prepares for studying Jewish text independently',
+                     1: 'Agree/Strongly Agree'}, row=34)
+    ]
+    # defining tables to get information from
+    t_parents_own = table_dict[('own_school', 'parents')][0]
+    t_students_own = table_dict[('own_school', 'students')][0]
+    t_staff_own = table_dict[('own_school', 'staff')][0]
+    t_parents_com = table_dict[('comparison_schools', 'parents')][0]
+    t_students_com = table_dict[('comparison_schools', 'students')][0]
+    t_staff_com = table_dict[('comparison_schools', 'staff')][0]
+    # where each table data goes in excel columns
+    tables = [
+        dict(table=t_staff_own, column='D'),
+        dict(table=t_students_own, column='C'),
+        dict(table=t_parents_own, column='B'),
+        dict(table=t_staff_com, column='G'),
+        dict(table=t_students_com, column='F'),
+        dict(table=t_parents_com, column='E')
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 2  # Y is the index of the value needed to be pulled from the spss table
+    for d in tables:
+        i = 1  # i is the index of the table line
+        j = 0
+        while i < len(d['table'].data):
+            value, row = get_values_exhibits_6_17(i, j, d['table'], labels_rows, y)
+            col = d['column']
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+            i += 2
+            j += 1
+
+
 """
 
 get_cell_value(row_index, col_index)
