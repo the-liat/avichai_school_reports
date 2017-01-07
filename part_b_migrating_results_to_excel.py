@@ -386,6 +386,24 @@ def populate_exhibit13(table_dict, workbook):  # table_dict is the dictionary fo
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
 
 
+def populate_exhibit16(table_dict, workbook): #same as exhibit 5
+    ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
+    for school, stakeholder in table_dict:
+        table = table_dict[(school, stakeholder)][1]
+        value = find_cells(table)
+        if school == 'own_school':
+            col = 'M'
+        else:
+            col = 'N'
+        if stakeholder == 'staff':
+            row = '5'
+        elif stakeholder == 'students':
+            row = '6'
+        else:
+            row = '7'
+        cell = "{}{}".format(col, row)
+        ws.Range(cell).Value = value
+
 """
 
 get_cell_value(row_index, col_index)
