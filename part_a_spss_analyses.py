@@ -119,7 +119,7 @@ def run_analyses(school):
         comparison_schools=build_selection_for_comparison_schools)
     for exhibit_number, stakeholder_commands in exhibit_stakeholders.iteritems():
         table_dict = run_spss_syntax_per_exhibit(school, exhibit_number, stakeholder_commands, selection)
-        populate_exhibit(exhibit_number, table_dict, wb)
+        populate_exhibit(exhibit_number, table_dict, wb, school)
     wb.SaveAs(file_name)
 
 

@@ -25,12 +25,12 @@ def create_school_workbook_from_template(school_name):
     return wb, file_name
 
 
-def populate_exhibit(exhibit_number, table_dict, workbook):
+def populate_exhibit(exhibit_number, table_dict, workbook, school):
     func = globals()['populate_exhibit{}'.format(exhibit_number)]
-    func(table_dict, workbook)
+    func(table_dict, workbook, school)
 
 
-def populate_exhibit2(table_dict, workbook):
+def populate_exhibit2(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
     t_students_own = table_dict[('own_school', 'students')][1]
     go5, go8, go11 = t_students_own.get_row(2)[2:5]
@@ -52,7 +52,7 @@ def populate_exhibit2(table_dict, workbook):
     ws.Range("D7").Value = t_staff_com.get_row(1)[2]
 
 
-def populate_exhibit3(table_dict, workbook):
+def populate_exhibit3(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
     schools_cells = (('own_school', 'J'), ('comparison_schools', 'K'))
     for s_c in schools_cells:
@@ -67,7 +67,7 @@ def populate_exhibit3(table_dict, workbook):
             j += 1
 
 
-def populate_exhibit4(table_dict, workbook):
+def populate_exhibit4(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
     t_parents_own = table_dict[('own_school', 'parents')][1]
     ws.Range("J26").Value = t_parents_own.get_row(2)[4] + t_parents_own.get_row(3)[4]
@@ -93,7 +93,7 @@ def find_cells(table):  # this should work for every table in the table dictiona
     return x  # sum of 'important' and 'very important' %
 
 
-def populate_exhibit5(table_dict, workbook):
+def populate_exhibit5(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
     for school, stakeholder in table_dict:
         table = table_dict[(school, stakeholder)][1]
@@ -147,7 +147,7 @@ def get_values_exhibits_6_17(i, j, table, labels_rows, y):
     return value, row
 
 
-def populate_exhibit6(table_dict, workbook):
+def populate_exhibit6(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -205,7 +205,7 @@ def populate_exhibit6(table_dict, workbook):
             j += 1
 
 
-def populate_exhibit7(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+def populate_exhibit7(table_dict, workbook, school):  # table_dict is the dictionary for the spss tables
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -248,7 +248,7 @@ def populate_excel_by_row_labels_ex8(tables, labels_rows, ws, y):
             i += 1
 
 
-def populate_exhibit8(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+def populate_exhibit8(table_dict, workbook, school):  # table_dict is the dictionary for the spss tables
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -270,8 +270,9 @@ def populate_exhibit8(table_dict, workbook):  # table_dict is the dictionary for
              row=50),
         dict(labels={1: 'Challange-There are too many children in the classroom'},
              row=51),
-        dict(labels={1: 'Challange-Hebrew for everyday communication is the first class that gets canceled for an activity'},
-             row=52),
+        dict(labels={
+            1: 'Challange-Hebrew for everyday communication is the first class that gets canceled for an activity'},
+            row=52),
     ]
     # defining tables to get information from
     t_parents_own = table_dict[('own_school', 'parents')][1]
@@ -291,7 +292,7 @@ def populate_exhibit8(table_dict, workbook):  # table_dict is the dictionary for
     populate_excel_by_row_labels_ex8(tables, labels_rows, ws, y)
 
 
-def populate_exhibit9(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+def populate_exhibit9(table_dict, workbook, school):  # table_dict is the dictionary for the spss tables
     ws = workbook.Worksheets('Exhibits 6,7,8,9')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -329,7 +330,7 @@ def populate_exhibit9(table_dict, workbook):  # table_dict is the dictionary for
             j += 1
 
 
-def populate_exhibit10(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+def populate_exhibit10(table_dict, workbook, school):  # table_dict is the dictionary for the spss tables
     ws = workbook.Worksheets('Exhibit 10 +Comments')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -362,7 +363,7 @@ def populate_exhibit10(table_dict, workbook):  # table_dict is the dictionary fo
         row += 1
 
 
-def populate_exhibit13(table_dict, workbook):  # table_dict is the dictionary for the spss tables
+def populate_exhibit13(table_dict, workbook, school):  # table_dict is the dictionary for the spss tables
     ws = workbook.Worksheets('Exhibits 12,13')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -386,7 +387,7 @@ def populate_exhibit13(table_dict, workbook):  # table_dict is the dictionary fo
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
 
 
-def populate_exhibit16(table_dict, workbook): #same as exhibit 5
+def populate_exhibit16(table_dict, workbook, school):  # same as exhibit 5
     ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
     for school, stakeholder in table_dict:
         table = table_dict[(school, stakeholder)][1]
@@ -405,7 +406,7 @@ def populate_exhibit16(table_dict, workbook): #same as exhibit 5
         ws.Range(cell).Value = value
 
 
-def populate_exhibit17(table_dict, workbook): #similar to exhibit 6
+def populate_exhibit17(table_dict, workbook, school):  # similar to exhibit 6
     ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -461,7 +462,7 @@ def populate_exhibit17(table_dict, workbook): #similar to exhibit 6
             j += 1
 
 
-def populate_exhibit18(table_dict, workbook):  # tsimilar to exhibit 7
+def populate_exhibit18(table_dict, workbook, school):  # tsimilar to exhibit 7
     ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -489,7 +490,7 @@ def populate_exhibit18(table_dict, workbook):  # tsimilar to exhibit 7
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
 
 
-def populate_exhibit19(table_dict, workbook):  # similar to exhibit 8
+def populate_exhibit19(table_dict, workbook, school):  # similar to exhibit 8
     ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -503,8 +504,9 @@ def populate_exhibit19(table_dict, workbook):  # similar to exhibit 8
              row=62),
         dict(labels={1: 'Challange-There are not enough Hebrew for prayer or text study teachers'},
              row=63),
-        dict(labels={1: 'Challange-There is not enough time devoted to study Hebrew for prayer or text study in Hebrew'},
-             row=64),
+        dict(
+            labels={1: 'Challange-There is not enough time devoted to study Hebrew for prayer or text study in Hebrew'},
+            row=64),
         dict(labels={1: 'Challange-Classical Hebrew texts are taught in translation'},
              row=65),
         dict(labels={1: 'Challange-There are too many children in the classroom'},
@@ -532,7 +534,7 @@ def populate_exhibit19(table_dict, workbook):  # similar to exhibit 8
     populate_excel_by_row_labels_ex8(tables, labels_rows, ws, y)
 
 
-def populate_exhibit20(table_dict, workbook):  # similar to exhibit 13
+def populate_exhibit20(table_dict, workbook, school):  # similar to exhibit 13
     ws = workbook.Worksheets('Exhibits 16,17,18,19,20')
     # where each value in table goes in excel rows
     labels_rows = [
@@ -554,6 +556,64 @@ def populate_exhibit20(table_dict, workbook):  # similar to exhibit 13
     # value for this line and put it in the right position, iterate on all lines
     y = 4  # Y is the index of the value needed to be pulled from the spss table
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
+
+
+def get_value_ex11(table, spss_index):
+    i = 0
+    value = 0
+    while i < len(table.data):
+        if table.get_row(i)[1] == 'Agree' or table.get_row(i)[1] == 'Strongly agree':
+            value += table.get_row(i)[spss_index]  # sum of 'Agree' and 'SA' %
+        i += 1
+    return value
+
+
+def get_line_indexes_ex11(num_grades):
+    i = 0
+    indexes = []
+    while i < num_grades:
+        indexes.append(i + 2)
+        i += 1
+    return indexes
+
+
+def find_rows_ex11(all_rows, num_grades):
+    for d in all_rows:
+        for key, row_list in d.iteritems():
+            if key == num_grades:
+                return row_list
+            else:
+                continue
+
+
+def populate_exhibit11(table_dict, workbook, school):
+    ws = workbook.Worksheets('Exhibit 11, three options')
+    # where each value in table goes in excel rows
+    # number of grades: own_school row , comparison_schools row
+    all_rows = (
+        {3: (5, 6)},
+        {2: (22, 23)},
+        {1: (39, 40)}
+    )
+    # where each table data goes in excel columns
+    columns = {
+        1: ('Q', 'S', 'U'),  # The teaching of Hebrew is fun and interesting
+        2: ('R', 'T', 'V')  # I like the learning materials in my Hebrew language classes
+    }
+    grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
+    num_grades = school['testedGradeCount']  # number of grades in this school
+    indexes = get_line_indexes_ex11(num_grades)
+    rows = find_rows_ex11(all_rows, num_grades)
+    for j, col_list in columns.iteritems():
+        tables = {0: table_dict[('own_school', 'students')][j],
+                  1: table_dict[('comparison_schools', 'students')][j]}
+        for xl_row_index, table in tables.iteritems():
+            xl_col_index = 0
+            for spss_index in indexes:
+                value = get_value_ex11(table, spss_index)
+                cell = "{}{}".format(col_list[xl_col_index], rows[xl_row_index])
+                ws.Range(cell).Value = value
+                xl_col_index += 1
 
 
 """

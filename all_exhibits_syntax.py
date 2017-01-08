@@ -185,48 +185,51 @@ exhibit_stakeholders = {
     #                 Hard_produce_highlevels_hebforcom_number_child_classes
     #                 Hard_produce_highlevels_hebforcom_firstclass_canceled (1))
     #                 /FREQUENCIES=$Challanges.Heb.comm."""),
-    9: dict(staff="""CTABLES
-                    /VLABELS VARIABLES=
-                    Support_available_prof_development
-                    Support_available_time
-                    Support_available_admin_support
-                    Support_available_hebforcom_assesments_instrument
-                    Support_available_classroom_support
-                    Support_available_hebforcom_curriculum
-                    Support_available_resources_specialneeds_gifted
-                    Support_available_hebfortext_assesments_instrument
-                    Support_available_hebfortext_curriculum
-                    Support_available_pedogogical_material
-                    DISPLAY=LABEL
-                    /TABLE
-                    Support_available_prof_development [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_time [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_admin_support [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_hebforcom_assesments_instrument [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_classroom_support [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_hebforcom_curriculum [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_resources_specialneeds_gifted [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_hebfortext_assesments_instrument [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_hebfortext_curriculum [C][COLPCT.COUNT PCT40.1] +
-                    Support_available_pedogogical_material  [C][COLPCT.COUNT PCT40.1]
-                    /CATEGORIES VARIABLES=Support_available_prof_development  [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_time [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_admin_support [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_hebforcom_assesments_instrument [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_classroom_support [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_hebforcom_curriculum [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_resources_specialneeds_gifted [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_hebfortext_assesments_instrument [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_hebfortext_curriculum [1, OTHERNM] EMPTY=INCLUDE
-                    /CATEGORIES VARIABLES=Support_available_pedogogical_material [1, OTHERNM] EMPTY=INCLUDE
-                    /TITLES
-                    TITLE='*Exhibit 9: Staff Report of Availability of School Resources.'."""),
+    # 9: dict(staff="""CTABLES
+    #                 /VLABELS VARIABLES=
+    #                 Support_available_prof_development
+    #                 Support_available_time
+    #                 Support_available_admin_support
+    #                 Support_available_hebforcom_assesments_instrument
+    #                 Support_available_classroom_support
+    #                 Support_available_hebforcom_curriculum
+    #                 Support_available_resources_specialneeds_gifted
+    #                 Support_available_hebfortext_assesments_instrument
+    #                 Support_available_hebfortext_curriculum
+    #                 Support_available_pedogogical_material
+    #                 DISPLAY=LABEL
+    #                 /TABLE
+    #                 Support_available_prof_development [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_time [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_admin_support [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_hebforcom_assesments_instrument [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_classroom_support [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_hebforcom_curriculum [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_resources_specialneeds_gifted [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_hebfortext_assesments_instrument [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_hebfortext_curriculum [C][COLPCT.COUNT PCT40.1] +
+    #                 Support_available_pedogogical_material  [C][COLPCT.COUNT PCT40.1]
+    #                 /CATEGORIES VARIABLES=Support_available_prof_development  [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_time [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_admin_support [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_hebforcom_assesments_instrument [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_classroom_support [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_hebforcom_curriculum [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_resources_specialneeds_gifted [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_hebfortext_assesments_instrument [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_hebfortext_curriculum [1, OTHERNM] EMPTY=INCLUDE
+    #                 /CATEGORIES VARIABLES=Support_available_pedogogical_material [1, OTHERNM] EMPTY=INCLUDE
+    #                 /TITLES
+    #                 TITLE='*Exhibit 9: Staff Report of Availability of School Resources.'."""),
     # 10: dict(parents="""Frequencies variables=Comapred_personal_experience_rate_Hebrew
     #         Comapred_personal_experience_rate_Hebrew_explain
     #         /order=analysis."""),
-    # 11: dict(students="""Frequencies variables=A_D_teaching_hebrewforcommunication_fun_interesting
-    #                     A_D_like_learning_materials_hebrewclasses
-    #                     /order=analysis."""),
+    11: dict(students="""CROSSTABS
+                        /TABLES=A_D_teaching_hebrewforcommunication_fun_interesting
+                         A_D_like_learning_materials_hebrewclasses BY Grade_Level
+                        /FORMAT=AVALUE TABLES
+                        /CELLS=COLUMN
+                        /COUNT ROUND CELL."""),
     # 12: dict(students="""Frequencies variables=
     #         Compared_othertopics_rate_hebrew
     #         Compared_secondlanguageclasses_doing_hebrewforcommunication
