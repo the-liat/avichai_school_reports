@@ -605,8 +605,61 @@ def populate_exhibit11(table_dict, workbook, school):
                 xl_col_index += 1
 
 
-"""
+def get_values_from_table_ex12(i, table, labels_and_cols, y):
+    # Y is the index of the value needed to be pulled from the spss table
+    row = table.get_row(i)
+    for d in labels_and_cols:
+        match = True
+        for col, label in d['labels'].iteritems():
+            if row[col] != label:
+                match = False
+                break
+        if not match:
+            continue
+        return row[y], d['column']
+    return None, None
 
+
+def populate_excel_by_col_labels(tables, labels_and_cols, ws, y):
+    for d in tables:
+        i = 0  # i is the index of the table line
+        while i < len(d['table'].data):
+            value, col = get_values_from_table_ex12(i, d['table'], labels_and_cols, y)
+            if value is None:
+                i += 1
+                continue
+            row = d['row']
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+            i += 1
+
+
+def populate_exhibit12(table_dict, workbook, school):
+    ws = workbook.Worksheets('Exhibits 12,13')
+    # where each value in table goes in excel columns
+    labels_and_cols = [
+        dict(labels={1: 'Much worse'}, column='M'),
+        dict(labels={1: 'Worse'}, column='N'),
+        dict(labels={1: 'About the same'}, column='O'),
+        dict(labels={1: 'Better'}, column='P'),
+        dict(labels={1: 'Much better'}, column='Q')
+    ]
+    # where each table data goes in excel rows
+    tables_and_rows = [
+        # Compared to other topics, how would you rate Hebrew instruction?
+        dict(table=table_dict[('own_school', 'students')][1], row=4),
+        dict(table=table_dict[('comparison_schools', 'students')][1], row=5),
+        # Compared to other second-language classes, how are you doing in Hebrew?
+        dict(table=table_dict[('own_school', 'students')][2], row=6),
+        dict(table=table_dict[('comparison_schools', 'students')][2], row=7)
+    ]
+    # in each table, it will go to the line and find the appropriate
+    # value for this line and put it in the right position, iterate on all lines
+    y = 4  # Y is the index of the value needed to be pulled from the spss table
+    populate_excel_by_col_labels(tables_and_rows, labels_and_cols, ws, y)
+
+
+"""
 get_cell_value(row_index, col_index)
 get_row(row_index)
 get_col_by_index(col_index)
