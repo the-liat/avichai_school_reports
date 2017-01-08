@@ -659,7 +659,7 @@ def populate_exhibit12(table_dict, workbook, school):
     populate_excel_by_col_labels(tables_and_rows, labels_and_cols, ws, y)
 
 
-def change_labels_if_only_2_grades_ex14(num_grades, grade_names, ws):
+def change_labels_if_only_2_grades(num_grades, grade_names, ws):
     if num_grades == 2:
         if grade_names['5th'] == 1:
             c1, c2 = 'Students: Grade 5', 'Students: Grade 8'
@@ -669,7 +669,7 @@ def change_labels_if_only_2_grades_ex14(num_grades, grade_names, ws):
             ws.Range("A19").Value = c2
 
 
-def define_dictionaries_ex14(table_dict, num_grades):
+def define_dictionaries_ex14(table_dict, num_grades, grade_names):
     all_rows = {
         3: dict(parents=[6], staff=[7], students=[8, 9, 10]),
         2: dict(parents=[16], staff=[17], students=[18, 19]),
@@ -703,9 +703,20 @@ def define_dictionaries_ex14(table_dict, num_grades):
         students={0: table_dict[('own_school', 'students')][0],
                   1: table_dict[('comparison_schools', 'students')][0]}
     )
-    spss_indexes = dict(parents=[1], staff=[1], students=[1, 2, 3][:num_grades])
+    indexes = get_indexes_by_grades(grade_names)
+    spss_indexes = dict(parents=[1], staff=[1], students=indexes)
     rows = all_rows[num_grades]
     return rows, columns, tables_d, spss_indexes
+
+
+def get_indexes_by_grades(grades):
+    """
+    :param grades: dict of grades (e.g. {'5th': 0, '8th': 1, '11th: 1})
+    :return:
+    """
+    indexes = {'5th': 1, '8th': 2, '11th': 3}
+    result = sorted(indexes[k] for k, v in grades.iteritems() if v == 1)
+    return result
 
 
 def enter_value_in_xl_cell(ws, table, spss_line, spss_value_index, row, col):
@@ -729,8 +740,8 @@ def populate_exhibit14(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibit 14, three options')
     grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
     num_grades = school['testedGradeCount']  # number of grades in this school
-    change_labels_if_only_2_grades_ex14(num_grades, grade_names, ws)
-    rows, columns, tables_d, spss_indexes = define_dictionaries_ex14(table_dict, num_grades)
+    change_labels_if_only_2_grades(num_grades, grade_names, ws)
+    rows, columns, tables_d, spss_indexes = define_dictionaries_ex14(table_dict, num_grades, grade_names)
     stakeholders = ('parents', 'staff', 'students')
     for s in stakeholders:
         index_col_s = columns[s]  # dictionary of spss indexes and corresponding xl columns
@@ -739,9 +750,59 @@ def populate_exhibit14(table_dict, workbook, school):
         tables = tables_d[s]  # dict of two tables - own and comparison
         iterate_over_tables(ws, tables, index_col_s, row_s, spss_indexes_s)
 
-    """
-    get_cell_value(row_index, col_index)
-    get_row(row_index)
-    get_col_by_index(col_index)
-    get_col_by_name(col_name)
-    """
+
+def define_dictionaries_ex21(table_dict, num_grades, grade_names):
+    all_rows = {
+        3: dict(parents=[6], staff=[7], students=[8, 9, 10]),
+        2: dict(parents=[16], staff=[17], students=[18, 19]),
+        1: dict(parents=[25], staff=[26], students=[27])
+    }
+    # where each table data goes in excel columns
+    # a dictionary that maps table number (from spss) to relevant columns (in xl)
+    # for students need to add +2 to the key (indexes are
+    columns = dict(
+        parents={0: ('B', 'D'),  # Reading, own school and comparison
+                 1: ('C', 'E'),  # understanding, own school and comparison
+                 },
+        staff={0: ('B', 'D'),  # Reading, own school and comparison
+               1: ('C', 'E'),  # understanding, own school and comparison
+               },
+        students={2: ('B', 'D'),  # Reading, own school and comparison
+                  3: ('C', 'E'),  # understanding, own school and comparison
+                  })
+    # the key (0/1) is the specific spss table
+    tables_d = dict(
+        parents={0: table_dict[('own_school', 'parents')][0],
+                 1: table_dict[('comparison_schools', 'parents')][0]},
+        staff={0: table_dict[('own_school', 'staff')][0],
+               1: table_dict[('comparison_schools', 'staff')][0]},
+        students={0: table_dict[('own_school', 'students')][0],
+                  1: table_dict[('comparison_schools', 'students')][0]}
+    )
+    indexes = get_indexes_by_grades(grade_names)
+    spss_indexes = dict(parents=[1], staff=[1], students=indexes)
+    rows = all_rows[num_grades]
+    return rows, columns, tables_d, spss_indexes
+
+
+def populate_exhibit21(table_dict, workbook, school):
+    ws = workbook.Worksheets('Exhibit 21, three options')
+    grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
+    num_grades = school['testedGradeCount']  # number of grades in this school
+    change_labels_if_only_2_grades(num_grades, grade_names, ws)
+    rows, columns, tables_d, spss_indexes = define_dictionaries_ex21(table_dict, num_grades, grade_names)
+    stakeholders = ('parents', 'staff', 'students')
+    for s in stakeholders:
+        index_col_s = columns[s]  # dictionary of spss indexes and corresponding xl columns
+        row_s = rows[s]  # list of rows in xl
+        spss_indexes_s = spss_indexes[s]  # list of indexes in spss
+        tables = tables_d[s]  # dict of two tables - own and comparison
+        iterate_over_tables(ws, tables, index_col_s, row_s, spss_indexes_s)
+
+
+"""
+get_cell_value(row_index, col_index)
+get_row(row_index)
+get_col_by_index(col_index)
+get_col_by_name(col_name)
+"""
