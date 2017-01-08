@@ -1,15 +1,15 @@
 exhibit_stakeholders = {
-    # 2: dict(students="""CROSSTABS
-    #                     /TABLES=Finished BY Grade_Level
-    #                     /FORMAT=AVALUE TABLES
-    #                     /CELLS=COUNT
-    #                     /COUNT ROUND CELL.
-    #                 """,
-    #         parents="""FREQUENCIES VARIABLES= Finished
-    #                     /ORDER=ANALYSIS.
-    #                 """,
-    #         staff="""FREQUENCIES VARIABLES= Finished
-    #                 /ORDER=ANALYSIS."""),
+    2: dict(students="""CROSSTABS
+                        /TABLES=Finished BY Grade_Level
+                        /FORMAT=AVALUE TABLES
+                        /CELLS=COUNT
+                        /COUNT ROUND CELL.
+                    """,
+            parents="""FREQUENCIES VARIABLES= Finished
+                        /ORDER=ANALYSIS.
+                    """,
+            staff="""FREQUENCIES VARIABLES= Finished
+                    /ORDER=ANALYSIS."""),
     # 3: dict(parents="""FREQUENCIES VARIABLES=Parent_Hebrew_Proficiency
     #                 /ORDER=ANALYSIS."""),
     # 4: dict(students="""FREQUENCIES VARIABLES= Attend_Overnight_Camp_Yes_No
@@ -224,12 +224,12 @@ exhibit_stakeholders = {
     # 10: dict(parents="""Frequencies variables=Comapred_personal_experience_rate_Hebrew
     #         Comapred_personal_experience_rate_Hebrew_explain
     #         /order=analysis."""),
-    11: dict(students="""CROSSTABS
-                        /TABLES=A_D_teaching_hebrewforcommunication_fun_interesting
-                         A_D_like_learning_materials_hebrewclasses BY Grade_Level
-                        /FORMAT=AVALUE TABLES
-                        /CELLS=COLUMN
-                        /COUNT ROUND CELL."""),
+    # 11: dict(students="""CROSSTABS
+    #                     /TABLES=A_D_teaching_hebrewforcommunication_fun_interesting
+    #                      A_D_like_learning_materials_hebrewclasses BY Grade_Level
+    #                     /FORMAT=AVALUE TABLES
+    #                     /CELLS=COLUMN
+    #                     /COUNT ROUND CELL."""),
     # 12: dict(students="""Frequencies variables=
     #         Compared_othertopics_rate_hebrew
     #         Compared_secondlanguageclasses_doing_hebrewforcommunication

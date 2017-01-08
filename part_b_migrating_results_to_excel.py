@@ -563,50 +563,39 @@ def get_value_ex11(table, spss_index):
     value = 0
     while i < len(table.data):
         if table.get_row(i)[1] == 'Agree' or table.get_row(i)[1] == 'Strongly agree':
-            value += table.get_row(i)[spss_index]  # sum of 'Agree' and 'SA' %
+            v = table.get_row(i)[spss_index]
+            v = 0 if isinstance(v, str) else v
+            value += v  # sum of 'Agree' and 'SA' %
         i += 1
     return value
-
-
-def get_line_indexes_ex11(num_grades):
-    i = 0
-    indexes = []
-    while i < num_grades:
-        indexes.append(i + 2)
-        i += 1
-    return indexes
-
-
-def find_rows_ex11(all_rows, num_grades):
-    for d in all_rows:
-        for key, row_list in d.iteritems():
-            if key == num_grades:
-                return row_list
-            else:
-                continue
 
 
 def populate_exhibit11(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibit 11, three options')
     # where each value in table goes in excel rows
     # number of grades: own_school row , comparison_schools row
-    all_rows = (
-        {3: (5, 6)},
-        {2: (22, 23)},
-        {1: (39, 40)}
-    )
+    all_rows = {3: (5, 6), 2: (22, 23), 1: (39, 40)}
     # where each table data goes in excel columns
+    # a dictionary that maps table number (from spss) to relevant columns (in xl)
     columns = {
         1: ('Q', 'S', 'U'),  # The teaching of Hebrew is fun and interesting
         2: ('R', 'T', 'V')  # I like the learning materials in my Hebrew language classes
     }
     grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
     num_grades = school['testedGradeCount']  # number of grades in this school
-    indexes = get_line_indexes_ex11(num_grades)
-    rows = find_rows_ex11(all_rows, num_grades)
-    for j, col_list in columns.iteritems():
-        tables = {0: table_dict[('own_school', 'students')][j],
-                  1: table_dict[('comparison_schools', 'students')][j]}
+    if num_grades == 2:
+        if grade_names['5th'] == 1:
+            c1, c2 = 'Grade 5', 'Grade 8'
+        else:
+            c1, c2 = 'Grade 8', 'Grade 11'
+        ws.Range("Q20").Value = c1
+        ws.Range("S20").Value = c2
+    spss_column_index_list = [2, 3, 4]
+    indexes = spss_column_index_list[:num_grades]
+    rows = all_rows[num_grades]
+    for table_num, col_list in columns.iteritems():
+        tables = {0: table_dict[('own_school', 'students')][table_num],
+                  1: table_dict[('comparison_schools', 'students')][table_num]}
         for xl_row_index, table in tables.iteritems():
             xl_col_index = 0
             for spss_index in indexes:
