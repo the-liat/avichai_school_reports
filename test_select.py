@@ -26,6 +26,14 @@ class SelectionTest(unittest.TestCase):
         result = build_grade_levels(grades)
         self.assertEqual(expected, result)
 
+    def test_get_line_indexes_ex11(self):
+        num_grades = 3
+        i = 0
+        indexes = []
+        while i < num_grades:
+            indexes.append(i + 2)
+        return indexes
+
     def test_build_selection_for_comparison_schools(self):
         stakeholder_name = 'staff'
         school = {'code': 4, 'sector': 1, 'grades': {'5th': 1, '8th': 1, '11th': 1}}
@@ -40,4 +48,3 @@ class SelectionTest(unittest.TestCase):
         EXECUTE.""".strip()
         result = build_selection_for_comparison_schools(school, stakeholder_name)
         self.assertEqual(expected, result.strip())
-

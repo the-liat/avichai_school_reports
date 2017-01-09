@@ -128,7 +128,7 @@ def main():
     open_excel()
     for school in schools:
         run_analyses(school)
-    # close_excel()
+    close_excel()
 
 
 if __name__ == '__main__':

@@ -3,10 +3,10 @@ schools = [
     #      grades={'5th': 1, '8th': 1, '11th': 1}),
     # dict(name='Barrack Hebrew Academy', code=45, testedGradeCount=2, sector=3, grades={'5th': 0, '8th': 1, '11th': 1}),
     # dict(name='Ben Porat Yosef', code=3, testedGradeCount=2, sector=1, grades={'5th': 1, '8th': 1, '11th': 0}),
-    dict(name='Berman Hebrew Academy', code=4, testedGradeCount=3, sector=1, grades={'5th': 1, '8th': 1, '11th': 1}),
+    #   dict(name='Berman Hebrew Academy', code=4, testedGradeCount=3, sector=1, grades={'5th': 1, '8th': 1, '11th': 1}),
     # dict(name='Beth Tfiloh', code=44, testedGradeCount=3, sector=1, grades={'5th': 1, '8th': 1, '11th': 1}),
     # dict(name='Bialik Hebrew Day School', code=5, testedGradeCount=2, sector=3, grades={'5th': 1, '8th': 1, '11th': 0}),
-    # dict(name='Boston-JCDS', code=40, testedGradeCount=2, sector=3, grades={'5th': 1, '8th': 1, '11th': 0}),
+    #   dict(name='Boston-JCDS', code=40, testedGradeCount=2, sector=3, grades={'5th': 1, '8th': 1, '11th': 0}),
     # dict(name='Carmel Academy', code=41, testedGradeCount=2, sector=3, grades={'5th': 1, '8th': 1, '11th': 0}),
     # dict(name='Charles E Smith Jewish Day School', code=6, testedGradeCount=3, sector=2,
     #      grades={'5th': 1, '8th': 1, '11th': 1}),
@@ -53,5 +53,5 @@ schools = [
     # dict(name='Yavneh Academy', code=35, testedGradeCount=2, sector=1, grades={'5th': 1, '8th': 1, '11th': 0}),
     # dict(name='Yeshiva of Greater Washington', code=37, testedGradeCount=2, sector=1,
     #      grades={'5th': 0, '8th': 1, '11th': 1}),
-    # dict(name='Yeshivat Har Torah', code=36, testedGradeCount=2, sector=1, grades={'5th': 1, '8th': 1, '11th': 0})
+    dict(name='Yeshivat Har Torah', code=36, testedGradeCount=2, sector=1, grades={'5th': 1, '8th': 1, '11th': 0})
 ]
