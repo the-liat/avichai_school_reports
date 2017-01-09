@@ -1,4 +1,6 @@
 import shutil
+from collections import OrderedDict
+
 import win32com.client as win32
 import os
 
@@ -30,26 +32,46 @@ def populate_exhibit(exhibit_number, table_dict, workbook, school):
     func(table_dict, workbook, school)
 
 
+def enter_students_values(ws, t_students_own, t_students_com, school):
+    num_schools = school['testedGradeCount']
+    spss_indexes = [2, 3, 4][:num_schools]
+    tables = [
+        dict(table=t_students_own, column='C'),
+        dict(table=t_students_com, column='D')
+    ]
+    all_rows = {'5th': 4, '8th': 5, '11th': 6}
+    rows = []
+    d = school['grades']
+    sorted_grades = sorted(d.keys(), key=lambda x: int(x[:-2]))
+    for grade in sorted_grades:
+        if d[grade] == 1:
+            rows.append(all_rows[grade])
+    for d in tables:
+        table = d['table']
+        col = d['column']
+        for row, spss_value_index in zip(rows, spss_indexes):
+            value = table.get_row(2)[spss_value_index]
+            cell = "{}{}".format(col, row)
+            ws.Range(cell).Value = value
+
+
 def populate_exhibit2(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibits 2,3,4,5')
     t_students_own = table_dict[('own_school', 'students')][1]
-    go5, go8, go11 = t_students_own.get_row(2)[2:5]
-    ws.Range("C4").Value = go5
-    ws.Range("C5").Value = go8
-    ws.Range("C6").Value = go11
     t_students_com = table_dict[('comparison_schools', 'students')][1]
-    gc5, gc8, gc11 = t_students_com.get_row(2)[2:5]
-    ws.Range("D4").Value = gc5
-    ws.Range("D5").Value = gc8
-    ws.Range("D6").Value = gc11
+    enter_students_values(ws, t_students_own, t_students_com, school)
     t_parents_own = table_dict[('own_school', 'parents')][1]
-    ws.Range("C3").Value = t_parents_own.get_row(1)[2]
+    row_index_po = 1 if len(t_parents_own.data) > 1 else 0
+    ws.Range("C3").Value = t_parents_own.get_row(row_index_po)[2]
     t_parents_com = table_dict[('comparison_schools', 'parents')][1]
-    ws.Range("D3").Value = t_parents_com.get_row(1)[2]
+    row_index_pc = 1 if len(t_parents_com.data) > 1 else 0
+    ws.Range("D3").Value = t_parents_com.get_row(row_index_pc)[2]
     t_staff_own = table_dict[('own_school', 'staff')][1]
-    ws.Range("C7").Value = t_staff_own.get_row(1)[2]
+    row_index_so = 1 if len(t_staff_own.data) > 1 else 0
+    ws.Range("C7").Value = t_staff_own.get_row(row_index_so)[2]
     t_staff_com = table_dict[('comparison_schools', 'staff')][1]
-    ws.Range("D7").Value = t_staff_com.get_row(1)[2]
+    row_index_sc = 1 if len(t_staff_com.data) > 1 else 0
+    ws.Range("D7").Value = t_staff_com.get_row(row_index_sc)[2]
 
 
 def populate_exhibit3(table_dict, workbook, school):
