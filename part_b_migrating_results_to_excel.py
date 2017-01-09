@@ -800,7 +800,7 @@ def populate_exhibit21(table_dict, workbook, school):
         iterate_over_tables(ws, tables, index_col_s, row_s, spss_indexes_s)
 
 
-def change_labels_if_only_2_grades_ex15_ex22(num_grades, grade_names, ws):
+def change_labels_if_only_2_grades_ex15(num_grades, grade_names, ws):
     if num_grades == 2:
         if grade_names['5th'] == 1:
             c1, c2 = 'Students: Grade 5', 'Students: Grade 8'
@@ -810,16 +810,26 @@ def change_labels_if_only_2_grades_ex15_ex22(num_grades, grade_names, ws):
             ws.Range("A35").Value = c2
 
 
-def iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes):
+def change_labels_if_only_2_grades_ex22(num_grades, grade_names, ws):
+    if num_grades == 2:
+        if grade_names['5th'] == 1:
+            c1, c2 = 'Students: Grade 5', 'Students: Grade 8'
+        else:
+            c1, c2 = 'Students: Grade 8', 'Students: Grade 11'
+            ws.Range("A25").Value = c1
+            ws.Range("A30").Value = c2
+
+
+def iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes, row_jump):
     j = 0
     for indx in spss_indexes:
         iterate_over_tables_ex15(ws, rows, tables_d, j, indx)
-        j += 6
+        j += row_jump
 
 
 def iterate_over_tables_ex15(ws, rows, tables_d, j, indx):
     # the following gets own or comp table with associated xl col and spss indexes (dictionary)
-    for table_col_spss_indexes in tables_d: # pick own or comparison table
+    for table_col_spss_indexes in tables_d:  # pick own or comparison table
         table = table_col_spss_indexes['table']
         xl_column_spss_indexes_d = table_col_spss_indexes['xl_column_spss_indexes']
         for col, line_indexes in xl_column_spss_indexes_d.iteritems():  # get list of col
@@ -899,9 +909,66 @@ def populate_exhibit15(table_dict, workbook, school):
     spss_indexes = create_spss_index_list(
         grade_names)  # returns a list of indx- where to get info by grade level in each spsstable line
     num_grades = school['testedGradeCount']  # number of grades in this school
-    change_labels_if_only_2_grades_ex15_ex22(num_grades, grade_names, ws)
+    change_labels_if_only_2_grades_ex15(num_grades, grade_names, ws)
     rows, tables_d = define_dictionaries_ex15(table_dict, num_grades, grade_names)
-    iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes)
+    row_jump = 6
+    iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes, row_jump)
+
+
+def define_dictionaries_ex22(table_dict, num_grades, grade_names):
+    # where each value in table goes in excel rows
+    all_labels_and_rows = {
+        3: [
+            dict(label='Read unfamiliar siddur text', row=6),  # for the next grade jump all rows by 5
+            dict(label='Understand unfamiliar siddur text', row=7),
+            dict(label='Lead prayer', row=8),
+            dict(label='Chant from the Torah', row=9),
+            dict(label='Learn Jewish text independently', row=10)
+        ],
+        2: [
+            dict(label='Read unfamiliar siddur text', row=25),  # for the next grade jump all rows by 5
+            dict(label='Understand unfamiliar siddur text', row=26),
+            dict(label='Lead prayer', row=27),
+            dict(label='Chant from the Torah', row=28),
+            dict(label='Learn Jewish text independently', row=29)
+        ],
+        1: [
+            dict(label='Read unfamiliar siddur text', row=39),
+            dict(label='Understand unfamiliar siddur text', row=40),
+            dict(label='Lead prayer', row=41),
+            dict(label='Chant from the Torah', row=42),
+            dict(label='Learn Jewish text independently', row=43)
+        ]
+    }
+    rows = all_labels_and_rows[num_grades]
+    # defining tables to get information from and where each table data goes in excel columns
+    tables_d = [
+        dict(table=table_dict[('own_school', 'students')][0],
+             xl_column_spss_indexes=dict(
+                 C=[2, 6, 10, 14, 18],
+                 D=[3, 7, 11, 15, 19],
+                 E=[4, 8, 12, 16, 20],
+                 F=[5, 9, 13, 17, 21])),
+        dict(table=table_dict[('comparison_schools', 'students')][0],
+             xl_column_spss_indexes=dict(
+                 G=[2, 6, 10, 14, 18],
+                 H=[3, 7, 11, 15, 19],
+                 I=[4, 8, 12, 16, 20],
+                 J=[5, 9, 13, 17, 21]))
+    ]
+    return rows, tables_d
+
+
+def populate_exhibit22(table_dict, workbook, school):
+    ws = workbook.Worksheets('Exhibit 22, three options')
+    grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
+    spss_indexes = create_spss_index_list(
+        grade_names)  # returns a list of indx- where to get info by grade level in each spsstable line
+    num_grades = school['testedGradeCount']  # number of grades in this school
+    change_labels_if_only_2_grades_ex22(num_grades, grade_names, ws)
+    rows, tables_d = define_dictionaries_ex22(table_dict, num_grades, grade_names)
+    row_jump = 5
+    iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes, row_jump)
 
 
 """
