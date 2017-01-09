@@ -810,19 +810,20 @@ def change_labels_if_only_2_grades_ex15_ex22(num_grades, grade_names, ws):
             ws.Range("A35").Value = c2
 
 
-def iterate_over_num_grades(ws, rows, tables_d, spss_indexes, num_grades, grade_names):
+def iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes):
     j = 0
     for indx in spss_indexes:
-        iterate_over_tables_ex15(ws, rows, tables_d, grade_names, spss_indexes, j, indx)
+        iterate_over_tables_ex15(ws, rows, tables_d, j, indx)
         j += 6
 
 
-def iterate_over_tables_ex15(ws, rows, tables_d, grade_names, spss_indexes, j, indx):
+def iterate_over_tables_ex15(ws, rows, tables_d, j, indx):
     # the following gets own or comp table with associated xl col and spss indexes (dictionary)
-    for tables, xl_column_spss_indexes_d in tables_d.iteritems():
-        for table in tables:  # pick own or comparison table
-            for col, line_indexes in xl_column_spss_indexes_d.iteritems():  # get list of col
-                iterate_over_spss_indexes(ws, table, rows, col, line_indexes, spss_indexes, grade_names, j, indx)
+    for table_col_spss_indexes in tables_d: # pick own or comparison table
+        table = table_col_spss_indexes['table']
+        xl_column_spss_indexes_d = table_col_spss_indexes['xl_column_spss_indexes']
+        for col, line_indexes in xl_column_spss_indexes_d.iteritems():  # get list of col
+            iterate_over_line_indexes(ws, table, rows, col, line_indexes, j, indx)
 
 
 def create_spss_index_list(grade_names):
@@ -837,11 +838,11 @@ def create_spss_index_list(grade_names):
     return spss_indexes
 
 
-def iterate_over_spss_indexes(ws, table, rows, col, line_indexes, spss_indexes, grade_names, j, indx):
+def iterate_over_line_indexes(ws, table, rows, col, line_indexes, j, indx):
     # focuse on one column in xl at a time, iterate over indexes to get values
     # match the values with the rows
     for r, spss_line in zip(rows, line_indexes):
-        row = r['row'] + j # row in excel
+        row = r['row'] + j  # row in excel
         enter_value_in_xl_cell(ws, table, spss_line, indx, row, col)
 
 
@@ -878,28 +879,29 @@ def define_dictionaries_ex15(table_dict, num_grades, grade_names):
     tables_d = [
         dict(table=table_dict[('own_school', 'students')][0],
              xl_column_spss_indexes=dict(
-                 C=[2, 6, 10, 14, 18, 29],
+                 C=[2, 6, 10, 14, 18, 22],
                  D=[3, 7, 11, 15, 19, 23],
                  E=[4, 8, 12, 16, 20, 24],
                  F=[5, 9, 13, 17, 21, 25])),
         dict(table=table_dict[('comparison_schools', 'students')][0],
              xl_column_spss_indexes=dict(
-                 G=[2, 6, 10, 14, 18, 29],
+                 G=[2, 6, 10, 14, 18, 22],
                  H=[3, 7, 11, 15, 19, 23],
                  I=[4, 8, 12, 16, 20, 24],
                  J=[5, 9, 13, 17, 21, 25]))
     ]
-    return rows, tables_d, spss_indexes
+    return rows, tables_d
 
 
 def populate_exhibit15(table_dict, workbook, school):
     ws = workbook.Worksheets('Exhibit 15, three options')
     grade_names = school['grades']  # dict with grade names as keys and 0/1 as values
-    spss_indexes = create_spss_index_list(grade_names) # returns a list of indx- where to get info by grade level in each spsstable line
+    spss_indexes = create_spss_index_list(
+        grade_names)  # returns a list of indx- where to get info by grade level in each spsstable line
     num_grades = school['testedGradeCount']  # number of grades in this school
     change_labels_if_only_2_grades_ex15_ex22(num_grades, grade_names, ws)
     rows, tables_d = define_dictionaries_ex15(table_dict, num_grades, grade_names)
-    iterate_over_num_grades(ws, rows, tables_d, spss_indexes, num_grades, grade_names)
+    iterate_over_spss_indexes(ws, rows, tables_d, spss_indexes)
 
 
 """
