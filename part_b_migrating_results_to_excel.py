@@ -18,7 +18,7 @@ def close_excel():
 
 
 def create_school_workbook_from_template(school_name):
-    f = r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Deliverables\School Reports\ACF HebDS All Exhibits for School Report TEMPLATE LS20170101.xlsx'
+    f = r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Deliverables\School Reports\ACF HebDS All Exhibits for School Report TEMPLATE LS20170110.xlsx'
     dir_name = r'C:\Users\Liat\Google Drive\102-04  ACF Hebrew in Jewish Day Schools\Deliverables\School Reports\Final Excel Sheets for Reports Production'
     file_name = os.path.join(dir_name, 'ACF HebDS. {}.xlsx'.format(school_name))
     if not os.path.exists(file_name):
@@ -363,7 +363,10 @@ def populate_exhibit10(table_dict, workbook, school):  # table_dict is the dicti
         dict(labels={1: 'Much better'}, row=8)
     ]
     # defining tables to get information from
-    t_parents_own = table_dict[('own_school', 'parents')][1]
+    if school['code'] in (3, 35):
+        t_parents_own = table_dict[('own_school', 'parents')][2]
+    else:
+        t_parents_own = table_dict[('own_school', 'parents')][1]
     t_parents_com = table_dict[('comparison_schools', 'parents')][2]
     # where each table data goes in excel columns
     tables = [
@@ -374,7 +377,10 @@ def populate_exhibit10(table_dict, workbook, school):  # table_dict is the dicti
     # value for this line and put it in the right position, iterate on all lines
     y = 4  # Y is the index of the value needed to be pulled from the spss table
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
-    t = table_dict[('own_school', 'parents')][2]
+    if school['code'] in (3, 35):
+        t = table_dict[('own_school', 'parents')][3]
+    else:
+        t = table_dict[('own_school', 'parents')][2]
     i = 0
     row = 17  # startinf row to pase comments
     while i < len(t.data):
