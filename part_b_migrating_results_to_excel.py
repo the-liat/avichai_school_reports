@@ -363,7 +363,7 @@ def populate_exhibit10(table_dict, workbook, school):  # table_dict is the dicti
         dict(labels={1: 'Much better'}, row=8)
     ]
     # defining tables to get information from
-    if school['code'] in (3, 35):
+    if school['code'] in (3, 35, 5, 42, 22, 27, 36, 18, 19):
         t_parents_own = table_dict[('own_school', 'parents')][2]
     else:
         t_parents_own = table_dict[('own_school', 'parents')][1]
@@ -377,12 +377,12 @@ def populate_exhibit10(table_dict, workbook, school):  # table_dict is the dicti
     # value for this line and put it in the right position, iterate on all lines
     y = 4  # Y is the index of the value needed to be pulled from the spss table
     populate_excel_by_row_labels(tables, labels_rows, ws, y)
-    if school['code'] in (3, 35):
+    if school['code'] in (3, 35, 5, 42, 22, 27, 36, 18, 19):
         t = table_dict[('own_school', 'parents')][3]
     else:
         t = table_dict[('own_school', 'parents')][2]
     i = 0
-    row = 17  # startinf row to pase comments
+    row = 17  # starting row to paste comments
     while i < len(t.data):
         value = t.get_row(i)[1]
         cell = "A{}".format(row)
